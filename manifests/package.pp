@@ -42,9 +42,10 @@ class sensu::package {
     'windows': {
       $repo_require = undef
 
-      $pkg_version = inline_template("<%= scope.lookupvar('sensu::version').sub(/(.*)\\./, '\\1-') %>")
+#      $pkg_version = inline_template("<%= scope.lookupvar('sensu::version').sub(/(.*)\\./, '\\1-') %>")
+      $pkg_version = $::sensu::version
       $pkg_title = 'sensu'
-      $pkg_name = 'Sensu'
+      $pkg_name = 'sensu'
       $pkg_source = "C:\\Windows\\Temp\\sensu-${pkg_version}.msi"
       $pkg_require = "Remote_file[${pkg_source}]"
 

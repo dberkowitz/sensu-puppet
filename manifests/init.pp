@@ -334,7 +334,7 @@ class sensu (
   $server                         = false,
   $api                            = false,
   $manage_services                = true,
-  $manage_user                    = true,
+  $manage_user                    = undef,
   $manage_plugins_dir             = true,
   $manage_handlers_dir            = true,
   $manage_mutators_dir            = true,

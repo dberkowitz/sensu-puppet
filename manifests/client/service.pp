@@ -39,7 +39,8 @@ class sensu::client::service (
       }
 
       exec { 'install-sensu-client':
-        command => "powershell.exe -ExecutionPolicy RemoteSigned -Command \"New-Service -Name sensu-client -BinaryPathName c:\\opt\\sensu\\bin\\sensu-client.exe -DisplayName 'Sensu Client' -StartupType Automatic\"",
+#        command => "powershell.exe -ExecutionPolicy RemoteSigned -Command \"New-Service -Name sensu-client -BinaryPathName c:\\opt\\sensu\\bin\\sensu-client.exe -DisplayName 'Sensu Client' -StartupType Automatic\"",
+        command => "sc.exe \\\\$ipaddress create sensu-client start= delayed-auto binPath= c:\\opt\\sensu\\bin\\sensu-client.exe DisplayName= \"Sensu Client\"",
         unless  => 'powershell.exe -ExecutionPolicy RemoteSigned -Command "Get-Service sensu-client"',
         path    => $::path,
         before  => Service['sensu-client'],
